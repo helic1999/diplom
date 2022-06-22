@@ -1,8 +1,9 @@
 <?php
-
+require_once('DB.php');
 class TelegramSender
 {
     public static function send(string $message, string $chatId): bool {
+
         $token = '5522243099:AAFLPTrkRwTq1YOwAONMnz__iphKm6iPMYE';
 
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatId;
