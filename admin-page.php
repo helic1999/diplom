@@ -14,6 +14,7 @@ if (!isset($_SESSION)) {
     <html>
     <head>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <title>Панель администратора</title>
     </head>
     <body style="background-color: bisque">
     <?php
@@ -27,6 +28,10 @@ if (!isset($_SESSION)) {
         <div style="width: 90%; margin: 0 auto">
             <div>
                 <h3 class="text-center"> Создание аккаунта прораба</h3>
+                <a href="/logout.php">выход из аккаунта</a>
+                <?php if (Users::isAdmin($_SESSION['admin']['login'])): ?>
+                    | <a href="/send-form.php">отправка сообщения</a> <br>
+                <?php endif ?>
                 <?php if (isset($_SESSION['create-foreman'])):
                     foreach ($_SESSION['create-foreman'] as $error):?>
                         <div class="alert alert-info"><?= $error; ?></div>

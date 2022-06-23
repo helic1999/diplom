@@ -19,8 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'):
         if (!Auth::isLogged()): ?>
             <p> неверный логин или пароль
-        <?php else: ?>
-            <p>вход успешно выполнен</p>
+        <?php else:
+            header('Location: /send-form.php');
+        exit;
+            ?>
+
         <?php endif ?>
     <?php elseif (Auth::isLogged()): ?>
         <p>вы уже в системе</p>

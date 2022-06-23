@@ -10,6 +10,7 @@ Auth::redirectUnauthorised();
 <html>
 <head>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>отправка сообщения</title>
 </head>
 <body style="background-color: bisque">
 <?php
@@ -21,15 +22,19 @@ $workers = Workers::getAll();
 
 ?>
 <form method="POST" action="/send-message.php">
+
     <div style="width: 90%; margin: 0 auto">
         <div>
-            <h3 class="text-center"> Текст сообщения</h3>
+            <h3 class="text-center"> Отправка сообщения</h3>
             <?php if (isset($_SESSION['send_error'])):
                 foreach ($_SESSION['send_error'] as $error):?>
                     <div class="alert alert-info"><?= $error; ?></div>
                 <?php endforeach;
             endif; ?>
-
+            <a href="/logout.php">выход из аккаунта</a>
+            <?php if (Users::isAdmin($_SESSION['admin']['login'])): ?>
+              | <a href="/admin-page.php">панель администратора</a>
+              <?php endif ?>
             <textarea name="message" class="form-control" style="width: 100%"></textarea>
             <hr>
         </div>

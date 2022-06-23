@@ -29,4 +29,11 @@ class Workers
         $res->execute([$telegramId]);
         return (bool)$res->fetchColumn();
     }
+
+    public static function getByTelegramId(string $telegramId) {
+        $pdo = DB::getInstance()->getPdo();
+        $res = $pdo->prepare('SELECT * FROM workers where `telegram_id` = ?');
+        $res->execute([$telegramId]);
+        return $res->fetch(PDO::FETCH_ASSOC);
+    }
 }
