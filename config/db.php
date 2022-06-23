@@ -1,7 +1,7 @@
 <?php
 return [
     'driver' => 'mysql',
-    'dbname' => 'nikita_db',
+    'dbname' => 'diplom',
     'host' => 'localhost',
     'user' => 'test',
     'pass' => 'pass'
