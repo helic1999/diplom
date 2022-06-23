@@ -16,4 +16,12 @@ class Foreman
             md5($params['password'])
             ]);
     }
+
+    public static function exist(string $login) {
+        $pdo = DB::getInstance()->getPdo();
+        $res = $pdo->prepare('SELECT COUNT(*) FROM users where `login` = ?');
+        $res->execute([$login]);
+        //$res->fetch(PDO::FETCH_ASSOC);
+         return (bool)$res->fetchColumn();
+    }
 }

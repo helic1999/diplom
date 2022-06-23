@@ -12,15 +12,21 @@ class Workers
     public static function create(array $params) {
         $pdo = DB::getInstance()->getPdo();
         $res = $pdo->prepare('INSERT INTO
-        users (
-    first_name, middle_name, last_name, login, password, role_id) values (?, ?, ?, ?, ?, 2)');
+        workers (
+    first_name, middle_name, last_name, telegram_id) values (?, ?, ?, ?)');
 
         return $res->execute([
             $params['first_name'],
             $params['middle_name'],
             $params['last_name'],
-            $params['login'],
-            md5($params['password'])
+            $params['telegram_id']
         ]);
+    }
+
+    public static function exist(string $telegramId) {
+        $pdo = DB::getInstance()->getPdo();
+        $res = $pdo->prepare('SELECT COUNT(*) FROM workers where `telegram_id` = ?');
+        $res->execute([$telegramId]);
+        return (bool)$res->fetchColumn();
     }
 }
