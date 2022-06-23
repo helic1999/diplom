@@ -1,3 +1,11 @@
+<?php
+ini_set('display_errors', 1);
+require_once('../classes/Auth.php');
+require_once('../classes/Users.php');
+require_once('../classes/Workers.php');
+Auth::redirectUnauthorised();
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -5,12 +13,10 @@
 </head>
 <body style="background-color: bisque">
 <?php
-session_start();
-ini_set('display_errors', 1);
-require_once('../classes/Workers.php');
-require_once('../classes/Auth.php');
-//$_SESSION['admin'] = ['login' => 'user', 'password' => 'qwerty'];
-var_dump(Auth::isLogged());
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 $workers = Workers::getAll();
 
 ?>
