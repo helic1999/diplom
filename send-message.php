@@ -1,6 +1,6 @@
 <?php
-require_once('../classes/TelegramSender.php');
-require_once('../classes/Users.php');
+require_once('classes/TelegramSender.php');
+require_once('classes/Users.php');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(404);
     exit();
@@ -32,12 +32,12 @@ foreach ($people as $person) {
     $res = TelegramSender::send($message, $person);
     if (!$res) {
         $_SESSION['send_error'][] = 'не удалось отправить сообщение';
-        header('Location: /send-form/');
+        header('Location: /send-form.php');
         exit();
     }
 }
 $_SESSION['send_error'][] = 'сообщение успешно отправлено';
-header('Location: /send-form/');
+header('Location: /send-form.php');
 exit();
 
 

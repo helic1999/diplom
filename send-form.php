@@ -1,15 +1,15 @@
 <?php
 ini_set('display_errors', 1);
-require_once('../classes/Auth.php');
-require_once('../classes/Users.php');
-require_once('../classes/Workers.php');
+require_once('classes/Auth.php');
+require_once('classes/Users.php');
+require_once('classes/Workers.php');
 Auth::redirectUnauthorised();
 
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: bisque">
 <?php
@@ -20,7 +20,7 @@ if (!isset($_SESSION)) {
 $workers = Workers::getAll();
 
 ?>
-<form method="POST" action="/send-message/">
+<form method="POST" action="/send-message.php">
     <div style="width: 90%; margin: 0 auto">
         <div>
             <h3 class="text-center"> Текст сообщения</h3>
