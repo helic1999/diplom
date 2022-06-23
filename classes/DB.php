@@ -8,7 +8,7 @@ class DB
 
     private function __construct()
     {
-        $params = require('../config/db.php');
+        $params = require(__DIR__. '/../config/db.php');
         $this->pdo = new PDO($params['driver'] . ':dbname=' . $params['dbname'] . ';host=' . $params['host'],
             $params['user'],
             $params['pass']);

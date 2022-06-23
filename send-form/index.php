@@ -8,7 +8,11 @@
 session_start();
 ini_set('display_errors', 1);
 require_once('../classes/Workers.php');
+require_once('../classes/Auth.php');
+//$_SESSION['admin'] = ['login' => 'user', 'password' => 'qwerty'];
+var_dump(Auth::isLogged());
 $workers = Workers::getAll();
+
 ?>
 <form method="POST" action="/send-message/">
     <div style="width: 90%; margin: 0 auto">
@@ -16,7 +20,7 @@ $workers = Workers::getAll();
             <h3 class="text-center"> Текст сообщения</h3>
             <?php if (isset($_SESSION['send_error'])):
                 foreach ($_SESSION['send_error'] as $error):?>
-                    <p style="color:red"><?= $error; ?></p>
+                    <div class="alert alert-info"><?= $error; ?></div>
                 <?php endforeach;
             endif; ?>
 
@@ -38,4 +42,4 @@ $workers = Workers::getAll();
     </div>
 </body>
 </html>
-<?php session_destroy(); ?>
+<?php unset($_SESSION['send_error']); ?>
