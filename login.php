@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'):
         if (!Auth::isLogged()): ?>
-            <p> неверный логин или пароль
+            <p> неверный логин или пароль</p>
         <?php else:
             header('Location: /send-form.php');
         exit;
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label>Логин</label>
     <input type="text" class="form-control" name="login">
     <label>Пароль</label>
-    <input type="text" class="form-control" name="password">
+    <input type="password" class="form-control" name="password">
     <button class="btn btn-dark">Вход</button>
 </form>
 </body>

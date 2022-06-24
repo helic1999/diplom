@@ -21,7 +21,7 @@ if (!mb_strlen(trim($_POST['message']))) {
 }
 
 if (isset($_SESSION['send_error'])) {
-    header('Location: /send-form/');
+    header('Location: /send-form.php');
 }
 
 
